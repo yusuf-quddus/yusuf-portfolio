@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: aws-deploy
     env:
-      CONTACT_API: ${{ secrets.CONTACT_API }}
+      REACT_APP_CONTACT_API: ${{ secrets.REACT_APP_CONTACT_API }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
