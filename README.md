@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Yusuf Quddus — Cloud-Powered Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the source for my portfolio site, where I demonstrate a modern, serverless cloud architecture and end-to-end CI/CD pipeline. This document explains the cloud services and technologies used to host, deploy, and develop my portfolio site. 
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔗 Live Demo
 
-### `npm start`
+[https://d3lnymsmiws1n8.cloudfront.net](https://d3lnymsmiws1n8.cloudfront.net)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Architecture Overview
+```[Diagram Here]```
 
-### `npm test`
+* **Frontend**: React app, pushed to S3, and served via CloudFront
+* **Backend**: AWS Lambda (Node.js) behind API Gateway handles a serverless contact form, sending mail via SES
+* **CI/CD**: GitHub Actions pipeline builds & deploys backend (Lambda) then frontend (S3 + invalidation)
+* **Security & Permissions**:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  * IAM roles for Lambda execution and CI/CD user
+  * S3 bucket locked down with Origin Access Control
+  * API Gateway CORS configured for the CloudFront origin
+  * SES identity & DKIM/SPF for deliverability
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment & CI/CD
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* **GitHub Actions**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  * **`backend` job**
 
-### `npm run eject`
+    * `npm ci` → zip & `aws lambda update-function-code`
+  * **`frontend` job** (depends on `backend`)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    * `npm ci && npm run build` → `aws s3 sync` → `aws cloudfront create-invalidation`
+  * **Secrets & Env**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    * Stored in an `aws-deploy` environment on Github (access keys + `CONTACT_API_URL`)
+    * Frontend reads `REACT_APP_CONTACT_API` at build time
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## What I’ve Implemented
 
-## Learn More
+* **Static hosting** with S3 & CloudFront (private bucket + OAC)
+* **CI/CD pipeline** using GitHub Actions & AWS CLI
+* **Serverless API** with HTTP API Gateway + Lambda
+* **Contact form** emailing via SES
+* **CORS** configured end‑to‑end for secure browser calls
+* **Environment‑specific builds** via CRA env variables
+* **Automatic notifications** on form submit (success/error banners)
+* **Logging & monitoring** with CloudWatch (Lambda logs)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Future Improvements (To Do)
 
-### Code Splitting
+* **Custom domain & HTTPS**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* **Staging environment**
 
-### Analyzing the Bundle Size
+* **End‑to‑end tests**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* **Monitoring & alerts**
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Repository Structure
 
-### Advanced Configuration
+```
+/
+├── backend/
+│   └── contact-form/       # Lambda code & package.json
+├── public/                 # Static assets & index.html
+├── src/                    # React app source
+│   ├── components/         # UI components (including ContactForm)
+│   └── App.js
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      # CI/CD pipeline
+├── package.json          
+└── README.md               
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
