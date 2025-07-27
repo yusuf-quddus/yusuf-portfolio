@@ -11,7 +11,7 @@ Welcome to the source for my portfolio site, where I demonstrate a modern, serve
 ---
 
 ## Architecture Overview
-![Architecture Diagram](assets/architecture-diagram.png)
+![Architecture Diagram](assets/Portfolio-Architecture.jpg)
 
 
 * **Frontend**: React app, pushed to S3, and served via CloudFront
