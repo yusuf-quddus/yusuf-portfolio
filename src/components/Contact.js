@@ -6,9 +6,28 @@ const Contact = () => {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const CONTACT_API = process.env.CONTACT_API
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Contact form submitted! (You'll need to wire this up to a backend or service like Formspree)");
+    try {
+      const res = await fetch (CONTACT_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      if (!res.ok) throw new Error(`Server responded ${res.status}`);
+      const { status: srv } = await res.json();
+      if (srv === 'sent') {
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    }
   };
 
   return (
