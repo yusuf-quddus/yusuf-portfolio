@@ -2,7 +2,7 @@ import { Box, Typography, Stack, Chip } from '@mui/material';
 
 const techStack = [
   'React', 'Node.js', 'PostgreSQL', 'AWS', 'Python', 'MongoDB',
-  'C++', 'Golang', 'Docker', 'Shell Scripting', 'CI/CD', 'Express', 'Linux'
+  'C++', 'Golang', 'Networking', 'Shell Scripting', 'CI/CD', 'Express', 'Linux'
 ];
 
 const Skills = () => (

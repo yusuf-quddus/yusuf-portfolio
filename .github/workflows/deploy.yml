@@ -1,4 +1,4 @@
-name: CI/CD – React Resume Site
+name: CI/CD – Resume Site
 
 on:
   push:
