@@ -16,17 +16,8 @@ const Contact = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
-      if (!res.ok) throw new Error(`Server responded ${res.status}`);
-      const { status: srv } = await res.json();
-      if (srv === 'sent') {
-        setStatus('success');
-        setForm({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-      }
     } catch (err) {
       console.error(err);
-      setStatus('error');
     }
   };
 
