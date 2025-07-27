@@ -11,7 +11,8 @@ Welcome to the source for my portfolio site, where I demonstrate a modern, serve
 ---
 
 ## Architecture Overview
-```[Diagram Here]```
+![Architecture Diagram](assets/architecture-diagram.png)
+
 
 * **Frontend**: React app, pushed to S3, and served via CloudFront
 * **Backend**: AWS Lambda (Node.js) behind API Gateway handles a serverless contact form, sending mail via SES
