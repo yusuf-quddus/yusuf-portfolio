@@ -29,7 +29,7 @@ const Contact = () => {
         <input name="name" placeholder="Your Name" onChange={handleChange} required />
         <input name="email" type="email" placeholder="Your Email" onChange={handleChange} required />
         <textarea name="message" placeholder="Your Message" onChange={handleChange} required />
-        <button type="submit">Send</button>
+        <button type="submit" style={{ cursor: 'pointer' }}>Send</button>
       </form>
     </section>
   );
