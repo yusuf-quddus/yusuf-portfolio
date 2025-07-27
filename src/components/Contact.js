@@ -6,7 +6,7 @@ const Contact = () => {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const CONTACT_API = process.env.CONTACT_API
+  const CONTACT_API = process.env.REACT_APP_CONTACT_API
 
   const handleSubmit = async (e) => {
     e.preventDefault();
