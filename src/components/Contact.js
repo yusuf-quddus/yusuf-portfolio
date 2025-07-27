@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../App.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus]     = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+
+   useEffect(() => {
+    if (status === 'success' || status === 'error') {
+      const timer = setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   const handleChange = (e) =>
     setFormData(f => ({ ...f, [e.target.name]: e.target.value }));
