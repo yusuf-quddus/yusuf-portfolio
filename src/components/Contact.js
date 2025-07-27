@@ -16,6 +16,7 @@ const Contact = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
+      setFormData({ name: '', email: '', message: '' });
     } catch (err) {
       console.error(err);
     }
