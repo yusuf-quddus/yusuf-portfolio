@@ -1,14 +1,16 @@
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
 
-const ses = new SESClient({ region: process.env.AWS_REGION || "us-west-1" });
+const ses = new SESClient({
+  region: process.env.AWS_REGION || "us-west-1",
+});
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   try {
     const { name, email, message } = JSON.parse(event.body || "{}");
     if (!name || !email || !message) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "name, email, and message are required" })
+        body: JSON.stringify({ error: "name, email, and message are required" }),
       };
     }
 
@@ -18,23 +20,24 @@ export const handler = async (event) => {
       Message: {
         Subject: { Data: `Contact form submission from ${name}` },
         Body: {
-          Text: { Data: `Name: ${name}\nEmail: ${email}\n\n${message}` }
-        }
-      }
+          Text: {
+            Data: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+          },
+        },
+      },
     };
 
     await ses.send(new SendEmailCommand(params));
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ status: "sent" })
+      body: JSON.stringify({ status: "sent" }),
     };
-
   } catch (err) {
     console.error("Error sending contact form email:", err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Internal server error" })
+      body: JSON.stringify({ error: "Internal server error" }),
     };
   }
 };
