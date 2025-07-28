@@ -1,8 +1,9 @@
 import { Box, Typography, Stack, Chip } from '@mui/material';
 
 const techStack = [
-  'React', 'Node.js', 'PostgreSQL', 'AWS', 'Python', 'MongoDB',
-  'C++', 'Golang', 'Networking', 'Shell Scripting', 'CI/CD', 'Express', 'Linux', 'DevOps'
+  'React', 'Node.js', 'PostgreSQL', 'AWS', 'Python', 'javascript', 'MongoDB', 'C',
+  'C++', 'Golang', 'Networking', 'Shell Scripting', 'CI/CD', 'Express', 'Linux', 'DevOps', 'REST API',
+  'Express', 'Database Management', 'Teaching'
 ];
 
 const Skills = () => (

@@ -6,18 +6,32 @@ import { motion } from 'framer-motion';
 
 const projects = [
   {
+    title: 'Cloud-Powered Portfolio',
+    image: '/images/awsservices.png',
+    description: 'Personal perforlio site hosted with AWS infrastructure (this very webpage)',
+    tech: ['React', 'Node.js', 'AWS', 'AWS S3', 'Devops', 'AWS CloudFront', 'AWS API Gateway', 'AWS Lambda', 'Serverless Architecture'],
+    link: 'https://github.com/yusuf-quddus/yusuf-portfolio',
+  },
+  {
+    title: 'RDesk Services',
+    image: '/images/rdesklogo.png',
+    description: 'Website for RDesk Services, an IT services company',
+    tech: ['React', 'Node.js', 'Postgres', 'Express', 'AWS RDS'],
+    link: 'https://github.com/yusuf-quddus/RDESK',
+  },
+  {
     title: 'RPGShowcase',
-    image: '/images/rpgshowcase.png',
+    image: '/images/rpgimage.webp',
     description: 'Web app for posting TTRPG characters with auth and S3 storage.',
-    tech: ['React', 'Node.js', 'MongoDB', 'AWS S3'],
+    tech: ['React', 'Node.js', 'MongoDB', 'AWS S3', 'Express', 'JWT Authentication', 'material UI'],
     link: 'https://github.com/yusuf-quddus/RPG-Showcase',
   },
   {
-    title: 'Cryptographic File Sharing',
-    image: '/images/cryptoapp.png',
-    description: 'Secure file sharing app with encryption and access control.',
-    tech: ['Golang', 'Crypto', 'File Storage'],
-    link: 'https://github.com/yusuf-quddus/cryptographic-fileshare',
+    title: 'Gitlet',
+    image: '/images/git-logo.png',
+    description: 'Clone of git version control system',
+    tech: ['Java', 'Data Structures', 'File Management', 'Hashing'],
+    link: 'https://github.com/yusuf-quddus/Gitlet',
   },
 ];
 
