@@ -3,8 +3,9 @@ import { Container, Box } from '@mui/material';
 import Header from './components/Header';
 import About from './components/About';
 import Skills from './components/Skills';
-import Projects from './components/Projects';
+import Experience from './components/Experience';
 import Highlights from './components/Highlights';
+import Projects from './components/Projects';
 import Contact from './components/Contact';
 
 function App() {
@@ -13,9 +14,10 @@ function App() {
       <Header />
         <Box mt={4}>
           <About />
+          <Experience />
           <Skills />
-          <Highlights />
           <Projects />
+          <Highlights />
           <Contact />
         </Box>
     </Container>

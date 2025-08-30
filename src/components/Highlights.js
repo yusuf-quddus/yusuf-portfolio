@@ -1,4 +1,3 @@
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const highlights = [
@@ -10,17 +9,29 @@ const highlights = [
 ];
 
 const Highlights = () => (
-  <Box my={4}>
-    <Typography variant="h5" gutterBottom>Career Highlights</Typography>
-    <List>
-      {highlights.map((item) => (
-        <ListItem key={item}>
-          <ListItemIcon><CheckCircleIcon color="success" /></ListItemIcon>
-          <ListItemText primary={item} />
-        </ListItem>
-      ))}
-    </List>
-  </Box>
+  <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-10 tracking-tight">
+        Career Highlights
+      </h2>
+      
+      <div className="space-y-4 text-left">
+        {highlights.map((item, index) => (
+          <div 
+            key={item}
+            className="flex items-start gap-3 hover:text-gray-900 transition-colors duration-200"
+          >
+            <div className="flex-shrink-0 mt-1">
+              <CheckCircleIcon className="text-green-600 text-lg" />
+            </div>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              {item}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 );
 
 export default Highlights;
