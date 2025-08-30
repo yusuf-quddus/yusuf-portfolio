@@ -37,7 +37,7 @@ const Header = () => (
           <a 
             href="https://github.com/yusuf-quddus" 
             target="_blank" 
-            rel="noopener" 
+            rel="noreferrer" 
             aria-label="GitHub"
             className="p-3 rounded-full bg-gray-100 hover:bg-gray-900 text-gray-700 hover:text-white transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl"
           >
@@ -47,7 +47,7 @@ const Header = () => (
           <a 
             href="https://linkedin.com/in/yusuf-quddus" 
             target="_blank" 
-            rel="noopener" 
+            rel="noreferrer" 
             aria-label="LinkedIn"
             className="p-3 rounded-full bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl"
           >
